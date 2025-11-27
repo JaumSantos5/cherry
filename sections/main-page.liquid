@@ -1,0 +1,123 @@
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="page-width page-width--narrow section-{{ section.id }}-padding">
+  {% comment %}
+    <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      {{ page.title | escape }}
+    </h1>
+  {% endcomment %}
+  {% if page.handle == 'quem-somos' %}
+    <div>
+      <h1 class="main-page-title page-title {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        🗨️ Quem Somos
+      </h1>
+      <p>
+        Há 16 anos, a Cherry se dedica a vestir mulheres com estilo, confiança e personalidade — em todos os momentos da
+        vida.
+      </p>
+      <p>
+        Somos uma loja de moda feminina que transita com naturalidade entre o casual e o glamouroso. Do look confortável
+        para o dia a dia ao vestido perfeito para uma festa inesquecível, nossa missão é te acompanhar com beleza e
+        autenticidade em todas as ocasiões.
+      </p>
+      <p>
+        Valorizamos todos os corpos e acreditamos que a moda deve abraçar todas as mulheres. Por isso, trabalhamos com
+        peças que vão do tamanho PP ao Plus Size, com modelagens que valorizam e respeitam cada silhueta.
+      </p>
+      <p>
+        Com mais de uma década e meia de história, seguimos firmes com o mesmo propósito: entregar qualidade, estilo e
+        carinho em cada detalhe. Cherry — há 16 anos vestindo você para viver e brilhar.
+      </p>
+    </div>
+  {% endif %}
+  {% if page.handle == 'envios-e-prazos' %}
+    <div>
+      <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        📦 Envios e Prazos
+      </h1>
+      <p>
+        Todos os pedidos são processados em regime full-time, com expedição imediata após a confirmação do pagamento.
+      </p>
+      • São Paulo (capital): entregas via Motoboy.
+      <p>• Demais regiões do Brasil: envios pelos Correios (PAC ou SEDEX).</p>
+      <p>O código de rastreio é enviado assim que a postagem for realizada.</p>
+      <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        🚚 Formas de Entrega
+      </h1>
+      <p>📦 Correios – Entregas para todo o Brasil</p>
+      <p>🛵 Motoboy– Entregas na cidade de São Paulo (capital)</p>
+    </div>
+  {% endif %}
+  {% if page.handle == 'politicas-de-trocas-e-devolucoes' %}
+    <div>
+      <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+        🔄 Política de Trocas e Devoluções
+      </h1>
+      <h2>Trocas</h2>
+      <p>
+        Aceitamos trocas em até 07 dias corridos após o recebimento, mediante as seguintes condições: • Peça sem uso,
+        com etiqueta e lacre originais; • Trocas por tamanho, modelo ou crédito na loja; • Peças em promoção ou do Bazar
+        Secreto não são trocadas.
+      </p>
+      <h2>Devoluções por Arrependimento</h2>
+      <p>
+        Você pode solicitar a devolução em até 7 dias corridos, conforme o Código de Defesa do Consumidor. • A peça deve
+        estar nas mesmas condições em que foi recebida, sem uso e com etiqueta e lacre intactos.
+      </p>
+      <h2>Importante</h2>
+      <p>⚠️ O valor do frete não é reembolsado em nenhuma das situações (troca ou devolução por arrependimento).</p>
+    </div>
+  {% endif %}
+
+  <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.main-page.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}
